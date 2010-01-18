@@ -1,0 +1,38 @@
+<style type="text/css">
+.sp_list {}
+.sp_list .sp_title {display:block; height:20px; line-height:20px; overflow:hidden;font-size:14px;}
+.sp_list .sp_title span {color:#080}
+.sp_list .sp_title a {color:#2200CC}
+.sp_list .sp_content {padding: 8px 0 4px 8px; color:#333;}
+.sp_list .sp_theard {overflow:hidden;display:block; color:#666;}
+.sp_list .sp_theard span {display:block; float:left; width:80px; padding-bottom: 3px;}
+.sp_list .sp_theard .sp_w200 {display:block; float:left; width:200px;}
+.sp_list em {color:red; font-weight:bold;}
+</style>
+
+<div class="searchlist threadlist datalist">
+	<div class="itemtitle s_clear">
+		<h1><!--{if $keyword}-->{lang search_result_keyword}<!--{else}-->{lang search_result}<!--{/if}--></h1>
+		<!--{if !empty($multipage)}-->$multipage<!--{/if}-->
+	</div>
+	<table summary="{lang search}" cellspacing="0" cellpadding="0" width="100%" class="datatable">
+		<!--{if $postlist}--><!--{loop $postlist $post}-->
+		<tr><td><div class="sp_list">
+			<div class="sp_title"><span>{lang subject}: </span>
+				<a href="<!--{if $post['first'] == 0}-->gotopost.php?pid=$post['pid']<!--{else}-->viewthread.php?tid=$post['tid']<!--{/if}-->">$post['title']</a>
+			</div>
+			<div class="sp_content">$post['content']</div>
+			<div class="sp_theard">
+				<span class="sp_w200">{lang forum}: <a href="forumdisplay.php?fid=$post['fid']">$post['fname']</a></span>
+				<span>{lang author}: <a href="space.php?uid=$post['authorid']">$post['author']</a></span>
+				<span>{lang views}: $post['views']</span>
+				<span>{lang replies}: $post['replies']</span>
+				<span class="sp_w200">{lang lastpost}: $post['lastpost']</span>
+			</div>
+		</div></td></tr>
+		<!--{/loop}--><!--{else}-->
+			<tr><td>{lang search_nomatch}</td></tr>
+		<!--{/if}-->
+	</table>
+<!--{if !empty($multipage)}--><div class="pages_btns s_clear">$multipage</div><!--{/if}-->
+</div>
