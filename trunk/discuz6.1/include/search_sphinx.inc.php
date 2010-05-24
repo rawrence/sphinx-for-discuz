@@ -113,7 +113,7 @@ if (!empty($srchfrom)) {
 //ÅÅÐòÀàÐÍ
 $sp_order	= isset($ascdesc) && $ascdesc == 'asc' ? SPH_SORT_ATTR_ASC : SPH_SORT_ATTR_DESC;
 $sp_orderby	= array('lastpost', 'dateline', 'replies', 'views');//'rank', 
-if (isset($sp_orderby[$orderby])) {
+if (in_array($orderby, $sp_orderby)) {
 	$cl->SetSortMode($sp_order, $orderby);
 } else {
 	$cl->SetSortMode(SPH_SORT_EXPR, '@weight');
